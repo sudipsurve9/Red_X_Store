@@ -18,3 +18,11 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get('/',HomeComponent::class);
+
+Route::get('shop/',ShopComponent::class);
+
+Route::get('cart/',CartComponent::class);
+
+Route::get('checkout/',CheckoutComponent::class);
+
+
