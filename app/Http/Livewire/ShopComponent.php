@@ -10,4 +10,9 @@ class ShopComponent extends Component
     {
         return view('livewire.shop-component')->layout('layouts.base');
     }
+
+    public function renderlogin()
+    {
+        return view('livewire.shop-component')->layout('layouts.base');
+    }
 }

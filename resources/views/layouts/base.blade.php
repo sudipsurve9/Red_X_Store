@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/chosen.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/color-01.css')}}">
+
     @livewireStyles
 </head>
 
@@ -44,8 +45,7 @@
                         </div>
                         <div class="topbar-menu right-menu">
                             <ul>
-                                <li class="menu-item"><a title="Register or Login" href="login.html">Login</a></li>
-                                <li class="menu-item"><a title="Register or Login" href="register.html">Register</a></li>
+
                                 <li class="menu-item lang-menu menu-item-has-children parent">
                                     <a title="English" href="#"><span class="img label-before"><img src="{{asset('assets/images/lang-en.png')}}" alt="lang-en"></span>English<i class="fa fa-angle-down" aria-hidden="true"></i></a>
                                     <ul class="submenu lang">
@@ -69,6 +69,47 @@
                                         </li>
                                     </ul>
                                 </li>
+
+                                <!-- <a href="{{ url('/dashboard') }}"> { {Route::has('login') ? "true" : "fasle";} } </a> -->
+                                @if(Route::has('login'))
+
+                                @auth
+                                @if(Auth::user()->utype==='ADM')
+                                <li class="menu-item menu-item-has-children parent">
+                                    <a title="My Account" href="#">My Account ({{ Auth::user()->name}})<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                    <ul class="submenu curency">
+                                        <li class="menu-item">
+                                            <a title="Dashboard)" href="{{ route('admin.dashboard') }}">Dashboard</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" ;>Logout</a>
+                                        </li>
+                                        <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                        </form>
+                                    </ul>
+                                </li>
+                                @else
+                                <li class="menu-item menu-item-has-children parent">
+                                    <a title="My Account" href="#">My Account ({{ Auth::user()->name}})<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                    <ul class="submenu curency">
+                                        <li class="menu-item">
+                                            <a title="Dashboard)" href="{{ route('user.dashboard') }}">Dashboard</a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit()" ;>Logout</a>
+                                        </li>
+                                        <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                        </form>
+                                    </ul>
+                                </li>
+                                @endif
+                                @else
+                                <li class="menu-item"><a title="Register or Login" href="{{ route('login') }}">Login</a></li>
+                                <li class="menu-item"><a title="Register or Login" href="{{ route('register') }}">Register</a></li>
+                                @endif
+                                @endif
                             </ul>
                         </div>
                     </div>
