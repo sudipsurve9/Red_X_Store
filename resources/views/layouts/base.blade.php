@@ -69,8 +69,6 @@
                                         </li>
                                     </ul>
                                 </li>
-
-                                <!-- <a href="{{ url('/dashboard') }}"> { {Route::has('login') ? "true" : "fasle";} } </a> -->
                                 @if(Route::has('login'))
 
                                 @auth
